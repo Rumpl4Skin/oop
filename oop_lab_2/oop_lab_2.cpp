@@ -110,7 +110,7 @@ void Sotrudnik<T1, T2, T3>::AddTail(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otde
 }
 
 template<typename T1, typename T2, typename T3>
-void Sotrudnik<T1, T2, T3>::п()
+void Sotrudnik<T1, T2, T3>::()
 {
 	int i = 1;
 	Element<T1, T2, T3>* temp = this->Head;
