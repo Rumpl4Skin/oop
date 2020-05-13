@@ -219,11 +219,11 @@ public:
 			cout << "\nРезультат:" << endl;
 			current.Print();
 
-			cout << "\nСортировка по занятому месту:" << endl;
+			cout << "\nСортировка по должности:" << endl;
 			current.Sort(0);
 			current.Print();
 
-			cout << "\nСортировка по классу музыкального инструмента:" << endl;
+			cout << "\nСортировка по году:" << endl;
 			current.Sort(1);
 			current.Print();
 
@@ -272,20 +272,20 @@ void Sotrudnik<T1, T2>::Sort(int props)
 template<typename T1, typename T2>
 void Sotrudnik<T1, T2>::swap(Element<string, int>* q, Element<string, int>* p)
 {
-	/*T1 qvalue = q->Fio.substr(0, q->Fio.size());
+	T1 qvalue = q->Fio.substr(0, q->Fio.size());
 	q->Fio = p->Fio.substr(0, p->Fio.size());
-	p->Fio = qvalue;*/
+	p->Fio = qvalue;
 
 	T1 qvalue2 = q->doljn.substr(0, q->doljn.size());
 	q->doljn = p->doljn.substr(0, p->doljn.size());
 	p->doljn = qvalue2;
 
-	/*T2 qvalue3 = q->data_in_work;
+	T2 qvalue3 = q->data_in_work;
 	q->data_in_work = p->data_in_work;
 	p->data_in_work = qvalue3;
 	T2 qvalue4 = q->n_otdela;
 	q->n_otdela = p->n_otdela;
-	p->n_otdela = qvalue4;*/
+	p->n_otdela = qvalue4;
 
 	/*T3 qvalue5 = q->c;
 	q->c = p->c;
