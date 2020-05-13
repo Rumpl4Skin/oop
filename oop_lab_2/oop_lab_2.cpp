@@ -223,7 +223,7 @@ public:
 			current.Sort(0);
 			current.Print();
 
-			cout << "\nСортировка по году:" << endl;
+			cout << "\nСортировка по номеру отдела:" << endl;
 			current.Sort(1);
 			current.Print();
 
@@ -256,11 +256,12 @@ void Sotrudnik<T1, T2>::Sort(int props)
 				break;
 
 			case 1:
-				if (left->n_otdela > right->n_otdela)
+				if (left->n_otdela < right->n_otdela)
 				{
 					swap(left, right);
 				}
 				break;
+
 			}
 			right = right->next;
 		}
