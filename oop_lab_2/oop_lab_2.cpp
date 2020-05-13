@@ -9,7 +9,7 @@
 
 using namespace std;
 
-template <typename T1, typename T2, typename T3>
+template <typename T1, typename T2>
 struct Element {
 	T1 Fio;
 	T1 doljn;
@@ -19,11 +19,11 @@ struct Element {
 	struct Element* prev;
 };
 
-template <typename T1, typename T2, typename T3>
+template <typename T1, typename T2>
 class Sotrudnik {
 public:
-	Element<T1, T2, T3>* Head;
-	Element<T1, T2, T3>* Tail;
+	Element<T1, T2>* Head;
+	Element<T1, T2>* Tail;
 	int Count;
 
 	Sotrudnik();
@@ -35,10 +35,10 @@ public:
 	void Print();
 
 	void Sort(int Props);
-	void swap(Element<string, int, string>* q, Element<string, int, string>* p);
+	void swap(Element<string, int>* q, Element<string, int>* p);
 	void SotrudnikSincen_otdela(int n_otdela);
 
-	friend ostream& operator << (ostream& out, const Sotrudnik<T1, T2, T3>& p) {
+	friend ostream& operator << (ostream& out, const Sotrudnik<T1, T2>& p) {
 
 		out << "всего вв сотрудников: " << p.Count << endl;
 
@@ -48,23 +48,23 @@ public:
 	int& operator[](const int index);
 };
 
-template<typename T1, typename T2, typename T3>
-Sotrudnik<T1, T2, T3>::Sotrudnik()
+template<typename T1, typename T2>
+Sotrudnik<T1, T2>::Sotrudnik()
 {
 	Head = Tail = nullptr;
 	Count = 0;
 }
 
-template<typename T1, typename T2, typename T3>
-int Sotrudnik<T1, T2, T3>::GetCount()
+template<typename T1, typename T2>
+int Sotrudnik<T1, T2>::GetCount()
 {
 	return Count;
 }
 
-template<typename T1, typename T2, typename T3> //Добавление нового абонента
-void Sotrudnik<T1, T2, T3>::AddHead(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otdela)
+template<typename T1, typename T2> 
+void Sotrudnik<T1, T2>::AddHead(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otdela)
 {
-	Element<T1, T2, T3>* temp = new Element<T1, T2, T3>;
+	Element<T1, T2>* temp = new Element<T1, T2>;
 	temp->prev = 0;
 	temp->Fio = Fio;
 	temp->doljn = doljn;
@@ -82,11 +82,11 @@ void Sotrudnik<T1, T2, T3>::AddHead(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otde
 	Count++;
 }
 
-template<typename T1, typename T2, typename T3>
-void Sotrudnik<T1, T2, T3>::AddTail(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otdela)
+template<typename T1, typename T2>
+void Sotrudnik<T1, T2>::AddTail(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otdela)
 {
 	try {
-		Element<T1, T2, T3>* temp = new Element<T1, T2, T3>;
+		Element<T1, T2>* temp = new Element<T1, T2>;
 		temp->prev = Tail;
 		temp->Fio = Fio;
 		temp->doljn = doljn;
@@ -109,27 +109,32 @@ void Sotrudnik<T1, T2, T3>::AddTail(T1 Fio, T1 doljn, T2 data_in_work, T2 n_otde
 	}
 }
 
-template<typename T1, typename T2, typename T3>
-void Sotrudnik<T1, T2, T3>::()
+template<typename T1, typename T2>
+void Sotrudnik<T1, T2>::Print()
 {
 	int i = 1;
-	Element<T1, T2, T3>* temp = this->Head;
+	Element<T1, T2>* temp = this->Head;
 	while (temp != NULL) {
+		cout.setf(ios::left);
+		cout.setf(ios::uppercase);
+		cout.setf(ios::skipws);
 		cout << i << ". " << setw(10)
 			<< temp->Fio << setw(10)
-			<< temp->doljn << setw(10)
-			<< temp->data_in_work << setw(10)
+			<< temp->doljn << setw(10);
+		cout.setf(ios::right);
+			cout<< temp->data_in_work << setw(10)
 			<< temp->n_otdela << endl;
 		temp = temp->next;
+		cout.unsetf(ios::right);
 		i++;
 	}
 }
 
-template<typename T1, typename T2, typename T3>
-int& Sotrudnik<T1, T2, T3>::operator[](const int index)
+template<typename T1, typename T2>
+int& Sotrudnik<T1, T2>::operator[](const int index)
 {
 	int counter = 0;
-	Element<T1, T2, T3>* current = this->Head;
+	Element<T1, T2>* current = this->Head;
 
 	while (current != nullptr) {
 		if (counter == index) {
@@ -141,7 +146,7 @@ int& Sotrudnik<T1, T2, T3>::operator[](const int index)
 }
 
 template <typename T1, typename T2, typename T3>
-ostream& operator << (ostream& str, const Sotrudnik<T1, T2, T3>& ov) {
+ostream& operator << (ostream& str, const Sotrudnik<T1, T2>& ov) {
 	Element<T1, T2>* current = ov.Head;
 	while (current != NULL) {
 		str << current->Fio << " "
@@ -154,22 +159,22 @@ ostream& operator << (ostream& str, const Sotrudnik<T1, T2, T3>& ov) {
 	return str;
 }
 
-template <typename T1, typename T2, typename T3>
+template <typename T1, typename T2>
 class textFile {
 public:
-	void static writeInFile(Sotrudnik<T1, T2, T3> element)
+	void static writeInFile(Sotrudnik<T1, T2> element)
 	{
 		cout << "Попытка записать данные в файл.";
 		try {
 			string path = "fdata.txt";
-			ofstream fout(path, ofstream::out || ofstream::app);
+			ofstream fout(path);
 			if (!fout.is_open()) {
 				throw "Ошибка открытия файла!";
 			}
 
 			cout << "\nФайл успешно открыт!" << endl;
 
-			Element<string, int, string>* current = element.Head;
+			Element<string, int>* current = element.Head;
 			while (current != NULL) {
 				fout << current->Fio << " "
 					<< current->doljn << " "
@@ -198,13 +203,12 @@ public:
 			T2 data_in_work;
 			T2 n_otdela;
 
-			Sotrudnik<string, int, string> current;
+			Sotrudnik<string, int> current;
 			if (!in.is_open()) {
 				throw "Ошибка открытия файла!";
 			}
 
-			//T1 Fio, T1 doljn, T2 data_in_work, T2 n_otdela, T3 c
-			//example.AddTail("Анастасия", "Беларусь", 1, 2000, "Скрипка");
+			
 			if (in.is_open()) {
 				while (in >> Fio >> doljn >> data_in_work >> n_otdela) {
 					current.AddTail(Fio, doljn, n_otdela, data_in_work);
@@ -231,11 +235,11 @@ public:
 
 };
 
-template<typename T1, typename T2, typename T3>
-void Sotrudnik<T1, T2, T3>::Sort(int props)
+template<typename T1, typename T2>
+void Sotrudnik<T1, T2>::Sort(int props)
 {
-	Element<string, int, string>* left = this->Head;
-	Element<string, int, string>* right = this->Head->next;
+	Element<string, int>* left = this->Head;
+	Element<string, int>* right = this->Head->next;
 
 	while (left->next)
 	{
@@ -265,8 +269,8 @@ void Sotrudnik<T1, T2, T3>::Sort(int props)
 	}
 }
 
-template<typename T1, typename T2, typename T3>
-void Sotrudnik<T1, T2, T3>::swap(Element<string, int, string>* q, Element<string, int, string>* p)
+template<typename T1, typename T2>
+void Sotrudnik<T1, T2>::swap(Element<string, int>* q, Element<string, int>* p)
 {
 	/*T1 qvalue = q->Fio.substr(0, q->Fio.size());
 	q->Fio = p->Fio.substr(0, p->Fio.size());
@@ -288,18 +292,18 @@ void Sotrudnik<T1, T2, T3>::swap(Element<string, int, string>* q, Element<string
 	p->c = qvalue5;*/
 }
 
-template<typename T1, typename T2, typename T3>
-void Sotrudnik<T1, T2, T3>::SotrudnikSincen_otdela(int n_otdela)
+template<typename T1, typename T2>
+void Sotrudnik<T1, T2>::SotrudnikSincen_otdela(int n_otdela)
 {
-	Sotrudnik<string, int, string> SotrudnikSincen_otdela;
-	Element<string, int, string>* elementcurrentItem = this->Head;
+	Sotrudnik<string, int> SotrudnikSincen_otdela;
+	Element<string, int>* elementcurrentItem = this->Head;
 
 	int count = 0;
 
 	for (int i = 0; i < Count; ++i)
 	{
 		if (elementcurrentItem->n_otdela <= n_otdela) {
-			Element<T1, T2, T3>* temp = new Element<T1, T2, T3>;
+			Element<T1, T2>* temp = new Element<T1, T2>;
 			temp->prev = elementcurrentItem->prev;
 			temp->Fio = elementcurrentItem->Fio;
 			temp->doljn = elementcurrentItem->doljn;
@@ -322,8 +326,8 @@ void Sotrudnik<T1, T2, T3>::SotrudnikSincen_otdela(int n_otdela)
 	if (count == 0)
 		cout << "Такого номера отдела нет" << endl;
 	else {
-		Element<string, int, string>* left = SotrudnikSincen_otdela.Head;
-		Element<string, int, string>* right = SotrudnikSincen_otdela.Head->next;
+		Element<string, int>* left = SotrudnikSincen_otdela.Head;
+		Element<string, int>* right = SotrudnikSincen_otdela.Head->next;
 
 		cout << endl;
 		while (left->next)
@@ -348,20 +352,20 @@ void Sotrudnik<T1, T2, T3>::SotrudnikSincen_otdela(int n_otdela)
 
 int main()
 {
-	setlocale(LC_ALL, "russian");
-	Sotrudnik<string, int, string> example;
-	example.AddTail("Карчмит", "прогер", 'С', 101);
-	example.AddTail("Святохо", "Босс", 'о', 102);
-	example.AddTail("Иванов", "оператор", 'Г', 106);
-	example.AddTail("Михальцов", "прогер", 'С', 001);
-	example.AddTail("Бойко", "инженер", 'Б', 30);
-	example.AddTail("Лебедев", "охранник", 'Ф', 40);
+	setlocale(LC_ALL, "Russian");
+	Sotrudnik<string, int> example;
+	example.AddTail("Карчмит", "прогер", 2010, 101);
+	example.AddTail("Святохо", "Босс",2018, 102);
+	example.AddTail("Иванов", "оператор", 2019, 106);
 
-	textFile<string, int, string>::writeInFile(example);
-	textFile<string, int, string>::readFromFile();
+
+	textFile<string, int>::writeInFile(example);
+	textFile<string, int>::readFromFile();
 
 	int n_otdela;
-	cout << "\nномер отдела: ";
+	cout.setf(ios::left);
+	cout << "\n номер отдела: ";
+	cout.unsetf(ios::left);
 	cin >> n_otdela;
 	example.SotrudnikSincen_otdela(n_otdela);
 
