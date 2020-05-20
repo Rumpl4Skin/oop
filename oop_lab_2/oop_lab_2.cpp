@@ -116,8 +116,8 @@ void Sotrudnik<T1, T2>::Print()
 	Element<T1, T2>* temp = this->Head;
 	while (temp != NULL) {
 		cout.setf(ios::left);
-		cout.setf(ios::uppercase);
-		cout.setf(ios::skipws);
+		cout.setf(ios::dec);
+		cout.setf(ios::showpos);
 		cout << i << ". " << setw(10)
 			<< temp->Fio << setw(10)
 			<< temp->doljn << setw(10);
