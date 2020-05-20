@@ -166,12 +166,13 @@ public:
 	{
 		cout << "Попытка записать данные в файл.";
 		try {
+			bool op = 0;
 			string path = "fdata.txt";
-			ofstream fout(path);
-			if (!fout.is_open()) {
-				throw "Ошибка открытия файла!";
-			}
-
+			ofstream fout(path);		
+				op = 1; 
+				cout.setf(ios::boolalpha);
+				cout << endl;
+				cout << op << endl;
 			cout << "\nФайл успешно открыт!" << endl;
 
 			Element<string, int>* current = element.Head;
@@ -188,7 +189,7 @@ public:
 			cout << "Данные записаны." << endl;
 		}
 		catch (char* str) {
-			cout << str << endl;
+		cout << str << endl;
 		}
 	}
 
